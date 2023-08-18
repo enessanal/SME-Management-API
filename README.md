@@ -1,1 +1,1 @@
-# Small and Medium-Sized Enterprise Management API
+# Small and Medium-Sized Enterprise Management
