@@ -3,7 +3,6 @@ package com.kz.sme_management.service;
 import com.kz.sme_management.model.Customer;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ICustomerService
 {

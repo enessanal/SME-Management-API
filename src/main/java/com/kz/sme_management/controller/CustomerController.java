@@ -24,21 +24,21 @@ public class CustomerController
 
     @GetMapping("/id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer getCustomerById(@PathVariable(required = true)  String id)
+    public Customer getCustomerById(@PathVariable String id)
     {
         return customerService.findById(id);
     }
 
     @GetMapping("/accountCode/{accountCode}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer getCustomerByAccountCode(@PathVariable(required = true)  String accountCode)
+    public Customer getCustomerByAccountCode(@PathVariable String accountCode)
     {
         return customerService.findByAccountCode(accountCode);
     }
 
     @GetMapping("/tc/{tc}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer getCustomerByIdentityNumber(@PathVariable(required = true)  String tc)
+    public Customer getCustomerByIdentityNumber(@PathVariable String tc)
     {
         return customerService.findByIdIdentityNumber(tc);
     }
