@@ -33,14 +33,12 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 - #### Completed Features
 
 	<!-- - [x] Completed feature 2 -->
-	- -
+	- [x] <b style="color:green">Get Customers List</b>
+	- [x] <b style="color:green">Get Customer by ID</b>
+	- [x] <b style="color:green">Get Customer by Account Code</b>
+	- [x] <b style="color:green">Get Customer by Identity Number</b>
 
 - #### Planned Features
-
-	- [ ] Get Customers List
-	- [ ] Get Customer by ID
-	- [ ] Get Customer by Account Code
-	- [ ] Get Customer by Identity Number
 	- [ ] Delete Customer by ID
 	- [ ] Delete Customer by Account Code
 	- [ ] Delete Customer by Identity Number
