@@ -23,8 +23,6 @@ public class SmeManagementApplication {
 
 	private final CustomerRepository customerRepository;
 
-
-
 	@Bean
 	CommandLineRunner initDatabase()
 	{
@@ -36,10 +34,22 @@ public class SmeManagementApplication {
 			List<Customer> customers = new ArrayList<>();
 			for(int i=0; i<100; i++)
 			{
-				String accountCode = Integer.toString(faker.number().numberBetween(10_000_000,90_000_000));
-				String tc = Integer.toString(faker.number().numberBetween(10_000_000,90_000_000));
+				try
+				{
+					String accountCode = Integer.toString(faker.number().numberBetween(10_000_000,90_000_000));
+					String tc = Integer.toString(faker.number().numberBetween(10_000_000,90_000_000));
 
-				customers.add(new Customer(accountCode, faker.name().fullName(),tc,faker.phoneNumber().cellPhone(),faker.internet().emailAddress()));
+					Customer customer = new Customer(accountCode, faker.name().fullName(),tc,faker.phoneNumber().cellPhone(),faker.internet().emailAddress());
+					customer.setAddress(faker.address().fullAddress());
+					customer.setDeliveryAddress(faker.address().fullAddress());
+					customer.setDetails(faker.lorem().sentence());
+					customers.add(customer);
+				}
+				catch (Exception exception)
+				{
+					System.out.println(exception.toString());
+				}
+
 			}
 			customerRepository.saveAll(customers);
 		};

@@ -5,6 +5,7 @@ import com.kz.sme_management.model.Customer;
 import com.kz.sme_management.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,5 +45,12 @@ public class CustomerService implements ICustomerService
         return customerRepository.findCustomerByIdentityNumber(identityNumber).orElseThrow( () -> new NotFoundException("Invalid identity number"));
     }
 
+    @Transactional
+    @Override
+    public void deleteById(String id)
+    {
+        if(customerRepository.findById(id).isEmpty())  throw new NotFoundException("Invalid customer id");
 
+        customerRepository.deleteById(id);
+    }
 }

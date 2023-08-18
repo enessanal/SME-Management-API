@@ -11,4 +11,6 @@ public interface ICustomerService
     Customer findById(String id);
     Customer findByAccountCode(String accountCode);
     Customer findByIdIdentityNumber(String identityNumber);
+
+    void deleteById(String id);
 }

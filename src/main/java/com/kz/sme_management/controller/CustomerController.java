@@ -50,6 +50,14 @@ public class CustomerController
         return customerService.findByIdIdentityNumber(tc);
     }
 
+    @DeleteMapping("/id/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUserById(@PathVariable String id)
+    {
+        customerService.deleteById(id);
+    }
+
+
 
 
 }
