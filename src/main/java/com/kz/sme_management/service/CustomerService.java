@@ -21,6 +21,12 @@ public class CustomerService implements ICustomerService
     }
 
     @Override
+    public Long count()
+    {
+        return customerRepository.count();
+    }
+
+    @Override
     public Customer findById(String id)
     {
         return customerRepository.findById(id).orElseThrow( () -> new NotFoundException("Invalid customer id"));

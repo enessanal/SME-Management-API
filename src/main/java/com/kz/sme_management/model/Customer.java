@@ -2,6 +2,9 @@ package com.kz.sme_management.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -16,19 +19,19 @@ public class Customer
     private String id;
 
     @Getter @Setter @NonNull
-    @Column(name="accountCode", nullable = false, unique = true)
+    @Column(name="account_code", nullable = false, unique = true)
     private String accountCode;
 
     @Getter @Setter @NonNull
-    @Column(name="fullName")
+    @Column(name="full_name")
     private String fullName;
 
     @Getter @Setter @NonNull
-    @Column(name="identityNumber", nullable = false, unique = true)
+    @Column(name="identity_number", nullable = false, unique = true)
     private String identityNumber;
 
     @Getter @Setter @NonNull
-    @Column(name="mobilePhone")
+    @Column(name="mobile_phone")
     private String mobilePhone;
 
     @Getter @Setter @NonNull
@@ -36,7 +39,7 @@ public class Customer
     private String email;
 
     @Getter @Setter
-    @Column(name="homePhone")
+    @Column(name="home_phone")
     private String homePhone;
 
     @Getter @Setter
@@ -44,12 +47,20 @@ public class Customer
     private String address;
 
     @Getter @Setter
-    @Column(name="deliveryAddress")
+    @Column(name="delivery_address")
     private String deliveryAddress;
 
     @Getter @Setter
     @Column(name="details")
     private String details;
 
+    @Getter
+    @Column(name="created_time", updatable = false)
+    @CreationTimestamp
+    private Date createdTime;
 
+    @Getter
+    @UpdateTimestamp
+    @Column(name="updated_time")
+    private Date updatedTime;
 }

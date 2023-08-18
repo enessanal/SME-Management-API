@@ -7,6 +7,7 @@ import java.util.List;
 public interface ICustomerService
 {
     List<Customer> findAll();
+    Long count();
     Customer findById(String id);
     Customer findByAccountCode(String accountCode);
     Customer findByIdIdentityNumber(String identityNumber);

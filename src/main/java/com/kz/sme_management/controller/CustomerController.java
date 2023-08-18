@@ -22,6 +22,13 @@ public class CustomerController
         return customerService.findAll();
     }
 
+    @GetMapping("/count")
+    @ResponseStatus(HttpStatus.OK)
+    public Long countCustomers()
+    {
+        return customerService.count();
+    }
+
     @GetMapping("/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Customer getCustomerById(@PathVariable String id)
