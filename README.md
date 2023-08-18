@@ -31,12 +31,10 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 ## Progress Tracking
 ### Customer Management
 - #### Completed Features
-
-	<!-- - [x] Completed feature 2 -->
-	- [x] <b style="color:green">Get Customers List</b>
-	- [x] <b style="color:green">Get Customer by ID</b>
-	- [x] <b style="color:green">Get Customer by Account Code</b>
-	- [x] <b style="color:green">Get Customer by Identity Number</b>
+	- [x] ***Get Customers List***
+	- [x] ***Get Customer by ID***
+	- [x] ***Get Customer by Account Code***
+	- [x] ***Get Customer by Identity Number***
 
 - #### Planned Features
 	- [ ] Delete Customer by ID
