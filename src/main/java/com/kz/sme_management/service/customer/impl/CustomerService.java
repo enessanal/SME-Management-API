@@ -1,7 +1,9 @@
 package com.kz.sme_management.service.customer.impl;
 
 import com.kz.sme_management.dto.AddressAddDto;
+import com.kz.sme_management.exception.ConflictException;
 import com.kz.sme_management.exception.NotFoundException;
+import com.kz.sme_management.exception.UnprocessableException;
 import com.kz.sme_management.model.customer.Address;
 import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.repository.customer.CustomerRepository;
@@ -65,10 +67,10 @@ public class CustomerService implements ICustomerService
         Customer customer = this.findById(id);
 
         if(customer.getAddresses().size()>=5)
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            throw new UnprocessableException("A customer can have a maximum of 5 addresses.");
 
         if(customer.getAddresses().stream().anyMatch(address -> address.getName().equals(addressAddDto.getName())))
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
+            throw new ConflictException("Address' name must be unique for a customer.");
 
         addressService.create(new Address(addressAddDto.getName(), addressAddDto.getCity(), addressAddDto.getDistrict(), addressAddDto.getDetails()), customer);
     }
