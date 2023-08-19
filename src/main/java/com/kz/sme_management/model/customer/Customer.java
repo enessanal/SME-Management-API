@@ -45,14 +45,6 @@ public class Customer
     private String homePhone;
 
     @Getter @Setter
-    @Column(name="address")
-    private String address;
-
-    @Getter @Setter
-    @Column(name="delivery_address")
-    private String deliveryAddress;
-
-    @Getter @Setter
     @Column(name="details")
     private String details;
 
