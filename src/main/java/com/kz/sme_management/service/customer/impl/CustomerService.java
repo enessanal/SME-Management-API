@@ -60,6 +60,22 @@ public class CustomerService implements ICustomerService
         customerRepository.deleteById(id);
     }
 
+    @Override
+    public Address getAddress(String id, String addressId)
+    {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Invalid customer id"));
+
+        return customer.getAddresses().stream().filter(address -> address.getId().equals(addressId)).findFirst().orElseThrow(() -> new NotFoundException("Invalid address id"));
+    }
+
+    @Override
+    public List<Address> getAddresses(String id)
+    {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Invalid customer id"));
+
+        return customer.getAddresses();
+    }
+
     public void addAddress(AddAddressDto addAddressDto, String id)
     {
         Customer customer = this.findById(id);

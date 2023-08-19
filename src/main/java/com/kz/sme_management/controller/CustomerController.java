@@ -2,6 +2,7 @@ package com.kz.sme_management.controller;
 
 import com.kz.sme_management.dto.customer.AddAddressDto;
 import com.kz.sme_management.dto.customer.ListCustomerDto;
+import com.kz.sme_management.model.customer.Address;
 import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.service.customer.impl.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -80,5 +81,22 @@ public class CustomerController
     {
         customerService.addAddress(addAddressDto, id);
     }
+
+    @GetMapping("/id/{id}/addresses")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get all addresses of a customer")
+    public List<Address> getAddresses(@PathVariable String id )
+    {
+        return customerService.getAddresses(id);
+    }
+
+    @GetMapping("/id/{id}/addresses/{addressId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get an address of a customer by id")
+    public Address getAddress(@PathVariable String id, @PathVariable String addressId)
+    {
+        return customerService.getAddress(id, addressId);
+    }
+
 
 }
