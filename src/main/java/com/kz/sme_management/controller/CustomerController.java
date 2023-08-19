@@ -67,7 +67,7 @@ public class CustomerController
     @DeleteMapping("/id/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete a Customer by id")
-    public void deleteUserById(@PathVariable String id)
+    public void deleteCustomerById(@PathVariable String id)
     {
         customerService.deleteById(id);
     }
