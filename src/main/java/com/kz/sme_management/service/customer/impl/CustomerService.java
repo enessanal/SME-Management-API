@@ -1,6 +1,6 @@
 package com.kz.sme_management.service.customer.impl;
 
-import com.kz.sme_management.dto.AddressAddDto;
+import com.kz.sme_management.dto.customer.AddAddressDto;
 import com.kz.sme_management.exception.ConflictException;
 import com.kz.sme_management.exception.NotFoundException;
 import com.kz.sme_management.exception.UnprocessableException;
@@ -9,10 +9,8 @@ import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.repository.customer.CustomerRepository;
 import com.kz.sme_management.service.customer.ICustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -62,17 +60,17 @@ public class CustomerService implements ICustomerService
         customerRepository.deleteById(id);
     }
 
-    public void addAddress(AddressAddDto addressAddDto, String id)
+    public void addAddress(AddAddressDto addAddressDto, String id)
     {
         Customer customer = this.findById(id);
 
         if(customer.getAddresses().size()>=5)
             throw new UnprocessableException("A customer can have a maximum of 5 addresses.");
 
-        if(customer.getAddresses().stream().anyMatch(address -> address.getName().equals(addressAddDto.getName())))
+        if(customer.getAddresses().stream().anyMatch(address -> address.getName().equals(addAddressDto.getName())))
             throw new ConflictException("Address' name must be unique for a customer.");
 
-        addressService.create(new Address(addressAddDto.getName(), addressAddDto.getCity(), addressAddDto.getDistrict(), addressAddDto.getDetails()), customer);
+        addressService.create(new Address(addAddressDto.getName(), addAddressDto.getCity(), addAddressDto.getDistrict(), addAddressDto.getDetails()), customer);
     }
 
 

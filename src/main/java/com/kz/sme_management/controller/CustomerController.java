@@ -1,6 +1,7 @@
 package com.kz.sme_management.controller;
 
-import com.kz.sme_management.dto.AddressAddDto;
+import com.kz.sme_management.dto.customer.AddAddressDto;
+import com.kz.sme_management.dto.customer.ListCustomerDto;
 import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.service.customer.impl.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,9 +25,10 @@ public class CustomerController
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get customers")
-    public List<Customer> getCustomers()
+    public List<ListCustomerDto> getCustomers()
     {
-        return customerService.findAll();
+        return customerService.findAll().stream().map(ListCustomerDto::new).collect(toList());
+
     }
 
     @GetMapping("/count")
@@ -72,9 +76,9 @@ public class CustomerController
     @PostMapping("/id/{id}/addresses")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create an address for a customer")
-    public void addAddress(@PathVariable String id, @RequestBody AddressAddDto addressAddDto)
+    public void addAddress(@PathVariable String id, @RequestBody AddAddressDto addAddressDto)
     {
-        customerService.addAddress(addressAddDto, id);
+        customerService.addAddress(addAddressDto, id);
     }
 
 }

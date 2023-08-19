@@ -1,4 +1,4 @@
-package com.kz.sme_management.dto;
+package com.kz.sme_management.dto.customer;
 
 
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @NoArgsConstructor
-public class AddressAddDto
+public class AddAddressDto
 {
     private String name;
     private String city;

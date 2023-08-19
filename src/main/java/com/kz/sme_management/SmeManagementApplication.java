@@ -2,9 +2,7 @@ package com.kz.sme_management;
 
 import com.github.javafaker.Faker;
 import com.kz.sme_management.model.customer.Customer;
-import com.kz.sme_management.repository.customer.AddressRepository;
 import com.kz.sme_management.repository.customer.CustomerRepository;
-import com.kz.sme_management.service.customer.impl.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -34,7 +32,7 @@ public class SmeManagementApplication {
 
 			// ********************************************************
 			List<Customer> customers = new ArrayList<>();
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 1000; i++) {
 				try {
 					String accountCode = Integer.toString(faker.number().numberBetween(10_000_000, 90_000_000));
 					String tc = Integer.toString(faker.number().numberBetween(10_000_000, 90_000_000));
