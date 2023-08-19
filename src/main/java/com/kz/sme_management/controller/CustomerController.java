@@ -72,6 +72,22 @@ public class CustomerController
         customerService.deleteById(id);
     }
 
+    @DeleteMapping("/accountCode/{accountCode}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete a Customer by accountCode")
+    public void deleteCustomerByAccountCode(@PathVariable String accountCode)
+    {
+        customerService.deleteByAccountCode(accountCode);
+    }
+
+    @DeleteMapping("/tc/{tc}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete a Customer by Identity Number (tc)")
+    public void deleteCustomerByIdentityNumber(@PathVariable String tc)
+    {
+        customerService.deleteByIdentityNumber(tc);
+    }
+
 
 
     @PostMapping("/id/{id}/addresses")

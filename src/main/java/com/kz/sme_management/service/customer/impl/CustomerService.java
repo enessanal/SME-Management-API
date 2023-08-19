@@ -55,9 +55,24 @@ public class CustomerService implements ICustomerService
     @Override
     public void deleteById(String id)
     {
-        if(customerRepository.findById(id).isEmpty())  throw new NotFoundException("Invalid customer id");
-
+        if(customerRepository.findById(id).isEmpty()) throw new NotFoundException("Invalid customer id");
         customerRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void deleteByAccountCode(String accountCode)
+    {
+        if(customerRepository.findCustomerByAccountCode(accountCode).isEmpty()) throw new NotFoundException("Invalid customer account code");
+        customerRepository.deleteCustomerByAccountCode(accountCode);
+    }
+
+    @Transactional
+    @Override
+    public void deleteByIdentityNumber(String identityNumber)
+    {
+        if(customerRepository.findCustomerByIdentityNumber(identityNumber).isEmpty()) throw new NotFoundException("Invalid customer identity number");
+        customerRepository.deleteCustomerByIdentityNumber(identityNumber);
     }
 
     @Override

@@ -41,6 +41,8 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 	- [x] ***Get Customer by Identity Number***
  	- [x] ***Count Customers***
 	- [x] ***Delete Customer By Id***
+	- [x] ***Delete Customer By Account Code***
+	- [x] ***Delete Customer By Identity Number***
 
 	- [x] ***Get Address List of a Customer***
 	- [x] ***Get an Address of a Customer By Id***
@@ -49,10 +51,8 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 
 
 - #### Planned Features
-	- [ ] Delete Customer by Account Code
-	- [ ] Delete Customer by Identity Number
-	- [ ] Delete Customer by Account Code
 	- [ ] Patch Customers Fields
+    - [ ] Pagination for Customer List
 	- [ ] Filter Customers by;
 		- [ ] Full Name
 		- [ ] City
