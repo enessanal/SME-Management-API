@@ -3,6 +3,10 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 
 *SME-Management API is being specifically designed for an SME. It can be customized for companies with different requirements under new tags.*
 
+## Reference Repositories
+* https://github.com/esaddag/catalog-api
+* https://github.com/esaddag/product-list
+
 ## Table of Contents
 
 <!-- - [Installation](#installation) -->
@@ -35,8 +39,12 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 	- [x] ***Get Customer by ID***
 	- [x] ***Get Customer by Account Code***
 	- [x] ***Get Customer by Identity Number***
- 	- [x] ***Count Customers*** 
- 	- [x] ***Delete Customer By Id*** 
+ 	- [x] ***Count Customers***
+	- [x] ***Delete Customer By Id***
+  
+	- [x] ***Add Customer Address***
+
+
 
 - #### Planned Features
 	- [ ] Delete Customer by Account Code
