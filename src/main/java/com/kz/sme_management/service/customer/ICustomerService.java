@@ -19,4 +19,6 @@ public interface ICustomerService
 
     Address getAddress(String id, String addressId);
     List<Address> getAddresses(String id);
+
+    void deleteAddresses(String id);
 }

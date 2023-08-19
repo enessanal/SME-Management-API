@@ -114,5 +114,15 @@ public class CustomerController
         return customerService.getAddress(id, addressId);
     }
 
+    @DeleteMapping("/id/{id}/addresses")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete all addresses of a customer by id")
+    public void deleteAddresses(@PathVariable String id)
+    {
+        customerService.deleteAddresses(id);
+    }
+
+
+
 
 }

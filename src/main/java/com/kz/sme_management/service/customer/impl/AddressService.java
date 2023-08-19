@@ -19,4 +19,10 @@ public class AddressService implements IAddressService
         address.setCustomer(customer);
         return addressRepository.save(address);
     }
+
+    @Override
+    public void deleteByCustomer(Customer customer)
+    {
+        addressRepository.deleteAddressesByCustomer(customer);
+    }
 }

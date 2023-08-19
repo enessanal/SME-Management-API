@@ -91,6 +91,15 @@ public class CustomerService implements ICustomerService
         return customer.getAddresses();
     }
 
+    @Transactional
+    @Override
+    public void deleteAddresses(String id)
+    {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Invalid customer id"));
+        addressService.deleteByCustomer(customer);
+
+    }
+
     public void addAddress(AddAddressDto addAddressDto, String id)
     {
         Customer customer = this.findById(id);
