@@ -48,12 +48,12 @@ public class CustomerController
         return customerService.findById(id);
     }
 
-    @GetMapping("/accountCode/{accountCode}")
+    @GetMapping("/code/{code}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Get a Customer by unique account code")
-    public Customer getCustomerByAccountCode(@PathVariable String accountCode)
+    @Operation(summary = "Get a Customer by unique code")
+    public Customer getCustomerByCode(@PathVariable String code)
     {
-        return customerService.findByAccountCode(accountCode);
+        return customerService.findByCode(code);
     }
 
     @GetMapping("/tc/{tc}")
@@ -72,12 +72,12 @@ public class CustomerController
         customerService.deleteById(id);
     }
 
-    @DeleteMapping("/accountCode/{accountCode}")
+    @DeleteMapping("/code/{code}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "Delete a Customer by accountCode")
-    public void deleteCustomerByAccountCode(@PathVariable String accountCode)
+    @Operation(summary = "Delete a Customer by unique code")
+    public void deleteCustomerByCode(@PathVariable String code)
     {
-        customerService.deleteByAccountCode(accountCode);
+        customerService.deleteByCode(code);
     }
 
     @DeleteMapping("/tc/{tc}")

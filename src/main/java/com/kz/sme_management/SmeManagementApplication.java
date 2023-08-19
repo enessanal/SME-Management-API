@@ -34,10 +34,10 @@ public class SmeManagementApplication {
 			List<Customer> customers = new ArrayList<>();
 			for (int i = 0; i < 1000; i++) {
 				try {
-					String accountCode = Integer.toString(faker.number().numberBetween(10_000_000, 90_000_000));
+					String code = Integer.toString(faker.number().numberBetween(10_000_000, 90_000_000));
 					String tc = Integer.toString(faker.number().numberBetween(10_000_000, 90_000_000));
 
-					Customer customer = new Customer(accountCode, faker.name().fullName(), tc, faker.phoneNumber().cellPhone(), faker.internet().emailAddress());
+					Customer customer = new Customer(code, faker.name().fullName(), tc, faker.phoneNumber().cellPhone(), faker.internet().emailAddress());
 					customer.setDetails(faker.lorem().sentence());
 					customers.add(customer);
 				} catch (Exception exception) {

@@ -21,8 +21,8 @@ public class Customer
     private String id;
 
     @Getter @Setter @NonNull
-    @Column(name="account_code", nullable = false, unique = true)
-    private String accountCode;
+    @Column(name="code", nullable = false, unique = true)
+    private String code;
 
     @Getter @Setter @NonNull
     @Column(name="full_name")

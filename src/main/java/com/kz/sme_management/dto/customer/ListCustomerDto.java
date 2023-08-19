@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 public class ListCustomerDto
 {
     private String id;
-    private String accountCode;
+    private String code;
     private String fullName;
     private String identityNumber;
     private String mobilePhone;

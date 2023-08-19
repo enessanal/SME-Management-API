@@ -40,9 +40,9 @@ public class CustomerService implements ICustomerService
     }
 
     @Override
-    public Customer findByAccountCode(String accountCode)
+    public Customer findByCode(String code)
     {
-        return customerRepository.findCustomerByAccountCode(accountCode).orElseThrow( () -> new NotFoundException("Invalid customer account code"));
+        return customerRepository.findCustomerByCode(code).orElseThrow( () -> new NotFoundException("Invalid customer code"));
     }
 
     @Override
@@ -61,10 +61,10 @@ public class CustomerService implements ICustomerService
 
     @Transactional
     @Override
-    public void deleteByAccountCode(String accountCode)
+    public void deleteByCode(String code)
     {
-        if(customerRepository.findCustomerByAccountCode(accountCode).isEmpty()) throw new NotFoundException("Invalid customer account code");
-        customerRepository.deleteCustomerByAccountCode(accountCode);
+        if(customerRepository.findCustomerByCode(code).isEmpty()) throw new NotFoundException("Invalid customer code");
+        customerRepository.deleteCustomerByCode(code);
     }
 
     @Transactional

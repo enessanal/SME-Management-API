@@ -10,11 +10,11 @@ public interface ICustomerService
     List<Customer> findAll();
     Long count();
     Customer findById(String id);
-    Customer findByAccountCode(String accountCode);
+    Customer findByCode(String code);
     Customer findByIdIdentityNumber(String identityNumber);
 
     void deleteById(String id);
-    void deleteByAccountCode(String accountCode);
+    void deleteByCode(String code);
     void deleteByIdentityNumber(String identityNumber);
 
     Address getAddress(String id, String addressId);
