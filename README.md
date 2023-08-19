@@ -47,6 +47,7 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 	- [x] ***Get Address List of a Customer***
 	- [x] ***Get an Address of a Customer By Id***
 	- [x] ***Add Customer Address***
+	- [x] ***Delete Customer Addresses***
 
 
 
