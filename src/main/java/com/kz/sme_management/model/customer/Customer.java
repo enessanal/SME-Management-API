@@ -1,7 +1,6 @@
 package com.kz.sme_management.model.customer;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.kz.sme_management.model.customer.Address;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

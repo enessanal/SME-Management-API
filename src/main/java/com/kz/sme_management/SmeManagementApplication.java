@@ -24,9 +24,6 @@ public class SmeManagementApplication {
 
 
 	private final CustomerRepository customerRepository;
-	private final AddressRepository addressRepository;
-
-	private final CustomerService customerService;
 
 	@Bean
 	CommandLineRunner initDatabase()
@@ -48,7 +45,7 @@ public class SmeManagementApplication {
 					customer.setDetails(faker.lorem().sentence());
 					customers.add(customer);
 				} catch (Exception exception) {
-					System.out.println(exception.toString());
+					System.out.println(exception);
 				}
 			}
 			customerRepository.saveAll(customers);
