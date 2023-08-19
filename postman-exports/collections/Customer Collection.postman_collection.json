@@ -1,0 +1,398 @@
+{
+	"info": {
+		"name": "Customer Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+	},
+	"item": [
+		{
+			"name": "Count Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/count",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get User By Invalid Id Expects 404, NOT FOUND\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.have.jsonBody(\"message\");\r",
+							"    pm.response.to.have.jsonBody(\"status\");\r",
+							"    pm.response.to.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"id",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "dd05ba54-6aee-4873-a367-6f01b61b3c6d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer By Code",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/code/:code",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"code",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "43845"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer By TC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/tc/:tc",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"tc",
+						":tc"
+					],
+					"variable": [
+						{
+							"key": "tc",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"id",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6156b0d9-2609-45b3-b45e-32d40234a2a8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer By TC",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/tc/:tc",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"tc",
+						":tc"
+					],
+					"variable": [
+						{
+							"key": "tc",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer By Code",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/code/:code",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"code",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "35627418"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Addresses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"İş12-3\",\r\n    \"city\":\"İstanbul\",\r\n    \"district\":\"Kadıköy\",\r\n    \"details\":\"Nida Kule 19. kat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"id",
+						":id",
+						"addresses"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6e07f4da-c479-4abc-96c0-67fb89aa8700"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Address by Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"İş12-3\",\r\n    \"city\":\"İstanbul\",\r\n    \"district\":\"Kadıköy\",\r\n    \"details\":\"Nida Kule 19. kat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses/:addressId",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"id",
+						":id",
+						"addresses",
+						":addressId"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "cdd0423f-1e05-4384-9adf-00e1e8c5ee46"
+						},
+						{
+							"key": "addressId",
+							"value": "6e07f4da-c479-4abc-96c0-67fb89aa8700"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Customer Address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"{{$randomDomainWord}}\",\r\n    \"city\":\"{{$randomCity}}\",\r\n    \"district\":\"{{$randomWord}}\",\r\n    \"details\":\"{{$randomStreetAddress}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"id",
+						":id",
+						"addresses"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "ff2d0c79-7ec0-49d4-9bbd-99ee582f39b1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer's Adresses",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMER_PATH}}",
+						"id",
+						":id",
+						"addresses"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "ff2d0c79-7ec0-49d4-9bbd-99ee582f39b1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
