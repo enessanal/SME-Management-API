@@ -1,6 +1,6 @@
-package com.kz.sme_management.service;
+package com.kz.sme_management.service.customer;
 
-import com.kz.sme_management.model.Customer;
+import com.kz.sme_management.model.customer.Customer;
 
 import java.util.List;
 

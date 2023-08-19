@@ -1,10 +1,13 @@
-package com.kz.sme_management.model;
+package com.kz.sme_management.model.customer;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.kz.sme_management.model.customer.Address;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -63,4 +66,9 @@ public class Customer
     @UpdateTimestamp
     @Column(name="updated_time")
     private Date updatedTime;
+
+    @Getter @Setter
+    @JsonManagedReference
+    @OneToMany(mappedBy="customer")
+    private List<Address> addresses;
 }

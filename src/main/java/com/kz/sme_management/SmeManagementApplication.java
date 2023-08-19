@@ -1,8 +1,10 @@
 package com.kz.sme_management;
 
 import com.github.javafaker.Faker;
-import com.kz.sme_management.model.Customer;
-import com.kz.sme_management.repository.CustomerRepository;
+import com.kz.sme_management.model.customer.Customer;
+import com.kz.sme_management.repository.customer.AddressRepository;
+import com.kz.sme_management.repository.customer.CustomerRepository;
+import com.kz.sme_management.service.customer.impl.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +24,9 @@ public class SmeManagementApplication {
 
 
 	private final CustomerRepository customerRepository;
+	private final AddressRepository addressRepository;
+
+	private final CustomerService customerService;
 
 	@Bean
 	CommandLineRunner initDatabase()
@@ -30,28 +35,32 @@ public class SmeManagementApplication {
 		{
 			Faker faker = new Faker();
 
-
+			// ********************************************************
 			List<Customer> customers = new ArrayList<>();
-			for(int i=0; i<100; i++)
-			{
-				try
-				{
-					String accountCode = Integer.toString(faker.number().numberBetween(10_000_000,90_000_000));
-					String tc = Integer.toString(faker.number().numberBetween(10_000_000,90_000_000));
+			for (int i = 0; i < 10; i++) {
+				try {
+					String accountCode = Integer.toString(faker.number().numberBetween(10_000_000, 90_000_000));
+					String tc = Integer.toString(faker.number().numberBetween(10_000_000, 90_000_000));
 
-					Customer customer = new Customer(accountCode, faker.name().fullName(),tc,faker.phoneNumber().cellPhone(),faker.internet().emailAddress());
+					Customer customer = new Customer(accountCode, faker.name().fullName(), tc, faker.phoneNumber().cellPhone(), faker.internet().emailAddress());
 					customer.setAddress(faker.address().fullAddress());
 					customer.setDeliveryAddress(faker.address().fullAddress());
 					customer.setDetails(faker.lorem().sentence());
 					customers.add(customer);
-				}
-				catch (Exception exception)
-				{
+				} catch (Exception exception) {
 					System.out.println(exception.toString());
 				}
-
 			}
 			customerRepository.saveAll(customers);
+			// ********************************************************
+
+
+
+
+
+
+
+
 		};
 	}
 }

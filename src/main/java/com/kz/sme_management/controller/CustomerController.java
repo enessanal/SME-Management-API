@@ -1,7 +1,8 @@
 package com.kz.sme_management.controller;
 
-import com.kz.sme_management.model.Customer;
-import com.kz.sme_management.service.CustomerService;
+import com.kz.sme_management.dto.AddressAddDto;
+import com.kz.sme_management.model.customer.Customer;
+import com.kz.sme_management.service.customer.impl.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +58,14 @@ public class CustomerController
         customerService.deleteById(id);
     }
 
+
+
+    @PostMapping("/id/{id}/addresses")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addAddress(@PathVariable String id, @RequestBody AddressAddDto addressAddDto)
+    {
+        customerService.addAddress(addressAddDto, id);
+    }
 
 
 
