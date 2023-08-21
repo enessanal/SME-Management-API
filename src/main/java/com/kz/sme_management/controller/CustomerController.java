@@ -8,10 +8,12 @@ import com.kz.sme_management.service.customer.impl.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -26,9 +28,14 @@ public class CustomerController
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get customers")
-    public List<ListCustomerDto> getCustomers()
+    public Page<Customer> getCustomers(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
     {
-        return customerService.findAll().stream().map(ListCustomerDto::new).collect(toList());
+
+        return customerService.findAll(page,size,sortBy,direction);
+
+
+
+//        return customerService.findAll().stream().map(ListCustomerDto::new).collect(toList());
 
     }
 

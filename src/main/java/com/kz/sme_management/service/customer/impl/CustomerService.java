@@ -9,10 +9,14 @@ import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.repository.customer.CustomerRepository;
 import com.kz.sme_management.service.customer.ICustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +26,14 @@ public class CustomerService implements ICustomerService
     private final AddressService addressService;
 
     @Override
-    public List<Customer> findAll()
+    public Page<Customer> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
     {
-        return customerRepository.findAll();
+        int pageNumber = Math.max((page.orElse(1) - 1), 0);
+        int pageSize = size.orElse(10);
+        String sortByParam = sortBy.orElse("createdTime");
+        Sort.Direction directionParam = direction.isPresent() && direction.get().equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Page<Customer> customerPage = customerRepository.findAll(PageRequest.of(pageNumber, pageSize, Sort.by(directionParam, sortByParam)));
+        return customerPage;
     }
 
     @Override
