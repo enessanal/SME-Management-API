@@ -1,8 +1,12 @@
 package com.kz.sme_management;
 
 import com.github.javafaker.Faker;
+import com.kz.sme_management.dto.customer.AddAddressDto;
+import com.kz.sme_management.model.customer.Address;
 import com.kz.sme_management.model.customer.Customer;
+import com.kz.sme_management.model.util.Paging;
 import com.kz.sme_management.repository.customer.CustomerRepository;
+import com.kz.sme_management.service.customer.impl.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +26,7 @@ public class SmeManagementApplication {
 
 
 	private final CustomerRepository customerRepository;
+	private final CustomerService customerService;
 
 	@Bean
 	CommandLineRunner initDatabase()
@@ -47,9 +52,18 @@ public class SmeManagementApplication {
 			customerRepository.saveAll(customers);
 			// ********************************************************
 
+			Customer customer = customerRepository.findAll().get(0);
 
 
-
+			for(int i=0; i<4; i++)
+			{
+				AddAddressDto addAddressDto = new AddAddressDto();
+				addAddressDto.setCity(faker.address().city());
+				addAddressDto.setDetails(faker.address().fullAddress());
+				addAddressDto.setDistrict(faker.address().state());
+				addAddressDto.setName(faker.name().name());
+				customerService.addAddress(addAddressDto, customer.getId());
+			}
 
 
 

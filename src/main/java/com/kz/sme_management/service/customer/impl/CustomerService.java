@@ -108,9 +108,12 @@ public class CustomerService implements ICustomerService
 
     }
 
+    @Transactional
     public void addAddress(AddAddressDto addAddressDto, String id)
     {
-        Customer customer = this.findById(id);
+//        Customer customer = this.findById(id);
+
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Invalid customer id"));
 
         if(customer.getAddresses().size()>=5)
             throw new UnprocessableException("A customer can have a maximum of 5 addresses.");
