@@ -1,6 +1,6 @@
 package com.kz.sme_management.service.customer.impl;
 
-import com.kz.sme_management.Paging;
+import com.kz.sme_management.model.util.Paging;
 import com.kz.sme_management.dto.customer.AddAddressDto;
 import com.kz.sme_management.dto.customer.ListCustomerDto;
 import com.kz.sme_management.exception.ConflictException;
@@ -12,16 +12,12 @@ import com.kz.sme_management.repository.customer.CustomerRepository;
 import com.kz.sme_management.service.customer.ICustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -33,12 +29,10 @@ public class CustomerService implements ICustomerService
     @Override
     public Page<ListCustomerDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
     {
-        Paging paging = new Paging(new int[]{5, 10, 15, 20, 25, 50, 100, 250}, new String[]{"createdTime","updateTime","code","id","email", "identityNumber"});
+        Paging paging = new Paging(new int[]{10, 25, 50, 100}, new String[]{"createdTime","updateTime","code","id","email", "identityNumber", "fullName", "mobilePhone"});
         Pageable pageable = paging.getPageable(page, size, sortBy, direction);
 
-        Page<ListCustomerDto> listCustomerDtoPage = customerRepository.findAll(pageable).map(ListCustomerDto::new);
-
-        return listCustomerDtoPage;
+        return customerRepository.findAll(pageable).map(ListCustomerDto::new);
     }
 
     @Override

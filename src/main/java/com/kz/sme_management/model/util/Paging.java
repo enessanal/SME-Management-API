@@ -1,16 +1,15 @@
-package com.kz.sme_management;
+package com.kz.sme_management.model.util;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import java.util.List;
 import java.util.Optional;
 
 public class Paging
 {
-    private int[] sizes;
-    private String[] sortBys;
+    private final int[] sizes;
+    private final String[] sortBys;
 
     private int number;
     private int size;
