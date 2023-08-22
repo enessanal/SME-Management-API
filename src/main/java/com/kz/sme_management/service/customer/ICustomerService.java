@@ -1,5 +1,6 @@
 package com.kz.sme_management.service.customer;
 
+import com.kz.sme_management.dto.customer.ListCustomerDto;
 import com.kz.sme_management.model.customer.Address;
 import com.kz.sme_management.model.customer.Customer;
 import org.springframework.data.domain.Page;
@@ -9,7 +10,7 @@ import java.util.Optional;
 
 public interface ICustomerService
 {
-    Page<Customer> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction);
+    Page<ListCustomerDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction);
     Long count();
     Customer findById(String id);
     Customer findByCode(String code);

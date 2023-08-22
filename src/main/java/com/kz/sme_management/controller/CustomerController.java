@@ -28,7 +28,7 @@ public class CustomerController
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get customers")
-    public Page<Customer> getCustomers(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
+    public Page<ListCustomerDto> getCustomers(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
     {
 
         return customerService.findAll(page,size,sortBy,direction);

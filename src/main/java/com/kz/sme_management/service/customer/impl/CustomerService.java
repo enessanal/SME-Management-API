@@ -1,6 +1,8 @@
 package com.kz.sme_management.service.customer.impl;
 
+import com.kz.sme_management.Paging;
 import com.kz.sme_management.dto.customer.AddAddressDto;
+import com.kz.sme_management.dto.customer.ListCustomerDto;
 import com.kz.sme_management.exception.ConflictException;
 import com.kz.sme_management.exception.NotFoundException;
 import com.kz.sme_management.exception.UnprocessableException;
@@ -11,12 +13,15 @@ import com.kz.sme_management.service.customer.ICustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -26,14 +31,14 @@ public class CustomerService implements ICustomerService
     private final AddressService addressService;
 
     @Override
-    public Page<Customer> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
+    public Page<ListCustomerDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
     {
-        int pageNumber = Math.max((page.orElse(1) - 1), 0);
-        int pageSize = size.orElse(10);
-        String sortByParam = sortBy.orElse("createdTime");
-        Sort.Direction directionParam = direction.isPresent() && direction.get().equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
-        Page<Customer> customerPage = customerRepository.findAll(PageRequest.of(pageNumber, pageSize, Sort.by(directionParam, sortByParam)));
-        return customerPage;
+        Paging paging = new Paging(new int[]{5, 10, 15, 20, 25, 50, 100, 250}, new String[]{"createdTime","updateTime","code","id","email", "identityNumber"});
+        Pageable pageable = paging.getPageable(page, size, sortBy, direction);
+
+        Page<ListCustomerDto> listCustomerDtoPage = customerRepository.findAll(pageable).map(ListCustomerDto::new);
+
+        return listCustomerDtoPage;
     }
 
     @Override
