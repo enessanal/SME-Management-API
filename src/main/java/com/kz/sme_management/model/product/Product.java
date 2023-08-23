@@ -2,21 +2,15 @@ package com.kz.sme_management.model.product;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Formula;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
