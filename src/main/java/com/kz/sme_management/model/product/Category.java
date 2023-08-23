@@ -1,6 +1,7 @@
 package com.kz.sme_management.model.product;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +16,9 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name="categories")
-public class Category
+@ToString(callSuper = true)
+public class Category extends BaseEntity
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="id", updatable = false, nullable = false)
-    @Getter
-    private String id;
-
     @Getter @Setter
     @Column(name="name", nullable = false, unique = true)
     private String name;
@@ -32,14 +28,4 @@ public class Category
     @JsonManagedReference
     @OneToMany(mappedBy="category")
     private List<Product> products;
-
-    @Getter
-    @Column(name="created_time", updatable = false)
-    @CreationTimestamp
-    private Date createdTime;
-
-    @Getter
-    @UpdateTimestamp
-    @Column(name="updated_time")
-    private Date updatedTime;
 }

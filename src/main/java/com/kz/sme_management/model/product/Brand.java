@@ -14,15 +14,9 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name="brands")
-@ToString
-public class Brand
+@ToString(callSuper = true)
+public class Brand extends BaseEntity
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="id", updatable = false, nullable = false)
-    @Getter
-    private String id;
-
     @Getter @Setter
     @Column(name="name", nullable = false, unique = true)
     private String name;
@@ -52,15 +46,4 @@ public class Brand
     @JsonManagedReference
     @OneToMany(mappedBy="brand")
     private List<Product> products;
-
-    @Getter
-    @Column(name="created_time", updatable = false)
-    @CreationTimestamp
-    private Date createdTime;
-
-    @Getter
-    @UpdateTimestamp
-    @Column(name="updated_time")
-    private Date updatedTime;
-
 }

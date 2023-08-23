@@ -3,6 +3,7 @@ package com.kz.sme_management.model.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kz.sme_management.model.customer.Customer;
+import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,15 +21,9 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name="products")
-@ToString
-public class Product
+@ToString(callSuper = true)
+public class Product extends BaseEntity
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="id", updatable = false, nullable = false)
-    @Getter
-    private String id;
-
     @Getter @Setter
     @Column(name="code", nullable = false, unique = true)
     private String code;
@@ -45,16 +40,9 @@ public class Product
     @Column(name="stock")
     private Integer stock;
 
-
-
     /*
-    * Category
-    * Type
-    * Size
     * PrintSize: ENUM
     * */
-
-
 
     @Getter @Setter
     @Column(name="list_price", nullable = false)
@@ -104,24 +92,6 @@ public class Product
     @JoinColumn(name="size_id", nullable = false)
     @JsonBackReference
     private Size size;
-
-
-
-
-
-
-
-    @Getter
-    @Column(name="created_time", updatable = false)
-    @CreationTimestamp
-    private Date createdTime;
-
-    @Getter
-    @UpdateTimestamp
-    @Column(name="updated_time")
-    private Date updatedTime;
-
-
 
 
 
