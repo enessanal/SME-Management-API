@@ -1,6 +1,6 @@
 package com.kz.sme_management.model.product;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class Size extends BaseEntity
 
     @Getter @Setter
     @ToString.Exclude
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(mappedBy="size")
     private List<Product> products;
 

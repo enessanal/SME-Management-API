@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kz.sme_management.model.util.BaseEntity;
 import lombok.*;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -41,7 +40,6 @@ public class Brand extends BaseEntity
 
     @Getter @Setter
     @ToString.Exclude
-//    @JsonManagedReference
     @JsonBackReference
     @OneToMany(mappedBy="brand")
     private List<Product> products;
