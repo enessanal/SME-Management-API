@@ -2,6 +2,7 @@ package com.kz.sme_management.model.product;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -66,7 +67,8 @@ public class Product extends BaseEntity
     @Getter @Setter
     @ManyToOne
     @JoinColumn(name="brand_id", nullable = false)
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonManagedReference
     private Brand brand;
 
     @Getter @Setter

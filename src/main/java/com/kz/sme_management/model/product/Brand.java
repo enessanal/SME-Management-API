@@ -1,5 +1,6 @@
 package com.kz.sme_management.model.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kz.sme_management.model.util.BaseEntity;
 import lombok.*;
 import jakarta.persistence.*;
@@ -40,7 +41,8 @@ public class Brand extends BaseEntity
 
     @Getter @Setter
     @ToString.Exclude
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(mappedBy="brand")
     private List<Product> products;
 }
