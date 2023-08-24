@@ -45,11 +45,11 @@ public class Product extends BaseEntity
 
     @Getter @Setter
     @Column(name="color")
-    private String color;
+    private String color = "";
 
     @Getter @Setter
     @Column(name="stock")
-    private Integer stock;
+    private Integer stock = 0;
 
     /*
     * PrintSize: ENUM

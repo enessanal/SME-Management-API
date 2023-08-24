@@ -1,6 +1,7 @@
 package com.kz.sme_management.controller;
 
 import com.kz.sme_management.dto.customer.ListCustomerDto;
+import com.kz.sme_management.dto.product.ListProductDto;
 import com.kz.sme_management.model.product.Product;
 import com.kz.sme_management.service.product.impl.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +28,7 @@ public class ProductController
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get products")
-    public List<Product> getProducts()
+    public List<ListProductDto> getProducts()
     {
         return productService.findAll();
     }
