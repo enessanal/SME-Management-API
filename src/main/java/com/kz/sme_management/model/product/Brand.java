@@ -12,9 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="brands")
 @ToString(callSuper = true)
+@RequiredArgsConstructor
 public class Brand extends BaseEntity
 {
-    @Getter @Setter
+    @Getter @Setter @NonNull
     @Column(name="name", nullable = false, unique = true)
     private String name;
 
@@ -37,6 +38,25 @@ public class Brand extends BaseEntity
     @Getter @Setter
     @Column(name="profit_cc_rate", nullable = false)
     private BigDecimal ccRate;
+
+
+
+    public <T extends Number> Brand(String name, T listDiscountRate, T profitRate, T profitMinRate, T profitMaxRate, T ccRate)
+    {
+        this.name = name;
+
+        this.listDiscountRate = BigDecimal.valueOf(listDiscountRate.doubleValue());
+        this.profitRate = BigDecimal.valueOf(profitRate.doubleValue());
+        this.profitMinRate = BigDecimal.valueOf(profitMinRate.doubleValue());
+        this.profitMaxRate = BigDecimal.valueOf(profitMaxRate.doubleValue());
+        this.ccRate = BigDecimal.valueOf(ccRate.doubleValue());
+    }
+
+
+
+
+
+
 
     @Getter @Setter
     @ToString.Exclude

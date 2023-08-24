@@ -3,10 +3,7 @@ package com.kz.sme_management.model.product;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,6 +17,26 @@ public class Product extends BaseEntity
     @Getter @Setter
     @Column(name="code", nullable = false, unique = true)
     private String code;
+
+    public <T extends Number> Product(String code, String name, T listPrice, Brand brand, Category category, Type type, Size size)
+    {
+        this(code, name, listPrice, brand, category, type);
+    }
+
+    public <T extends Number> Product(String code, String name, T listPrice, Brand brand, Category category, Type type)
+    {
+        this.code = code;
+        this.name = name;
+        this.listPrice = BigDecimal.valueOf(listPrice.doubleValue());
+        this.brand = brand;
+        this.category = category;
+        this.type = type;
+    }
+
+
+
+
+
 
     @Getter @Setter
     @Column(name="name", nullable = false)
@@ -82,7 +99,7 @@ public class Product extends BaseEntity
 
     @Getter @Setter
     @ManyToOne
-    @JoinColumn(name="size_id", nullable = false)
+    @JoinColumn(name="size_id", nullable = true)
     @JsonManagedReference
     private Size size;
 

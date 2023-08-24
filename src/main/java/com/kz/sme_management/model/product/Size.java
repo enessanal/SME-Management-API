@@ -3,19 +3,18 @@ package com.kz.sme_management.model.product;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Table(name="sizes")
 @ToString(callSuper = true)
+@RequiredArgsConstructor
 public class Size extends BaseEntity
 {
-    @Getter @Setter
+    @Getter @Setter @NonNull
     @Column(name="name", nullable = false, unique = true)
     private String name;
 

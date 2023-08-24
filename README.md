@@ -50,6 +50,15 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 	- [x] ***Delete Customer Addresses***
 
 
+### Product Management
+- #### Completed Features
+	- [x] ***Get Products List***
+
+
+
+
+
+	
 
 - #### Planned Features
 	- [ ] Patch Customers Fields
