@@ -10,7 +10,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/count",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/count",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -18,7 +18,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"count"
 					]
 				}
@@ -31,7 +31,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}?page=1&size=10&sortBy=&direction=",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -39,7 +39,25 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}"
+						"{{CUSTOMERS_PATH}}"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "sortBy",
+							"value": ""
+						},
+						{
+							"key": "direction",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -71,7 +89,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -79,14 +97,14 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"id",
 						":id"
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "dd05ba54-6aee-4873-a367-6f01b61b3c6d"
+							"value": "bbfe0eee-5a33-4285-b9ac-33d3c305d008"
 						}
 					]
 				}
@@ -106,7 +124,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/code/:code",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/code/:code",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -114,7 +132,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"code",
 						":code"
 					],
@@ -134,7 +152,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/tc/:tc",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/tc/:tc",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -142,7 +160,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"tc",
 						":tc"
 					],
@@ -162,7 +180,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -170,7 +188,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"id",
 						":id"
 					],
@@ -190,7 +208,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/tc/:tc",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/tc/:tc",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -198,7 +216,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"tc",
 						":tc"
 					],
@@ -218,7 +236,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/code/:code",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/code/:code",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -226,7 +244,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"code",
 						":code"
 					],
@@ -258,7 +276,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -266,7 +284,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"id",
 						":id",
 						"addresses"
@@ -299,7 +317,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses/:addressId",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses/:addressId",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -307,7 +325,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"id",
 						":id",
 						"addresses",
@@ -342,7 +360,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -350,7 +368,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"id",
 						":id",
 						"addresses"
@@ -371,7 +389,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMER_PATH}}/id/:id/addresses",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -379,7 +397,7 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{API_BASE}}",
-						"{{CUSTOMER_PATH}}",
+						"{{CUSTOMERS_PATH}}",
 						"id",
 						":id",
 						"addresses"
