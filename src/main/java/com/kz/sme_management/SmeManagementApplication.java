@@ -262,6 +262,12 @@ public class SmeManagementApplication {
 
 
 
+
+
+
+
+
+
 			Faker faker = new Faker();
 
 			List<Customer> customers = new ArrayList<>();
