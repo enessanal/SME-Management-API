@@ -25,7 +25,15 @@ public class ProductService implements IProductService
     @Override
     public Page<ListProductDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
     {
-        Paging paging = new Paging(new int[]{10, 25, 50, 100}, new String[]{"createdTime","updateTime","code","id","name", "listPrice", "purchasePrice"});
+        Paging paging = new Paging(new int[]{10, 25, 50, 100},
+                new String[]{"createdTime",
+                        "updateTime","code",
+                        "id","name",
+                        "listPrice", "purchasePrice",
+                        "cashPrice",  "limitPrice",
+                        "lastPrice", "ccPrice"
+        });
+
         Pageable pageable = paging.getPageable(page, size, sortBy, direction);
 
 //            "cashPrice": 3200.00,
