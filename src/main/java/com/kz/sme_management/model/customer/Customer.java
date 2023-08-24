@@ -60,6 +60,6 @@ public class Customer
 
     @Getter @Setter
     @JsonManagedReference
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 }
