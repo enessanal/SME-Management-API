@@ -21,6 +21,7 @@ public class Product extends BaseEntity
     public <T extends Number> Product(String code, String name, T listPrice, Brand brand, Category category, Type type, Size size)
     {
         this(code, name, listPrice, brand, category, type);
+        this.size = size;
     }
 
     public <T extends Number> Product(String code, String name, T listPrice, Brand brand, Category category, Type type)
