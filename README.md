@@ -53,20 +53,23 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 ### Product Management
 - #### Completed Features
 	- [x] ***Get Products List***
+    - [x] ***Get Product by ID***
 
 
-
-
+### Planned Features
+- [ ] Patch Customers Fields
+- [ ] Customer Add
+- [ ] Filter Customers by;
+	- [ ] Full Name
+	- [ ] City
+	- [ ] Address
+- [ ] Address add
+- [ ] Address update (PUT)
+- [ ] Async Bulk Update Products' Prices When a Brand's Rate Changed.
+- [ ] Export Product List to excel file.
+- [ ] Import Product List from excel file.
+- [ ] Product changes log management
+- [ ] Multi Language for error messages.
 
 	
-
-- #### Planned Features
-	- [ ] Patch Customers Fields
-    - [ ] Pagination for Customer List
-	- [ ] Filter Customers by;
-		- [ ] Full Name
-		- [ ] City
-		- [ ] Address
-
-		
-	 	
+	
