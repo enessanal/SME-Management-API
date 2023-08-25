@@ -4,12 +4,14 @@ import com.kz.sme_management.dto.product.UpdateBrandDto;
 import com.kz.sme_management.exception.ConflictException;
 import com.kz.sme_management.exception.NotFoundException;
 import com.kz.sme_management.model.product.Brand;
+import com.kz.sme_management.model.product.Product;
 import com.kz.sme_management.repository.product.BrandRepository;
 import com.kz.sme_management.service.product.IBrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -17,6 +19,7 @@ import java.util.List;
 public class BrandService implements IBrandService
 {
     private final BrandRepository brandRepository;
+    private final ProductService productService;
 
 
     @Override
@@ -44,8 +47,23 @@ public class BrandService implements IBrandService
         brand.setProfitMinRate(updateBrandDto.getProfitMinRate());
         brand.setCcRate(updateBrandDto.getCcRate());
 
-        return brandRepository.save(brand);
+        brand = brandRepository.save(brand);
 
 
+
+
+        /*TODO
+        * ASYNC
+        *  */
+        for(Product product :productService.findProductsByBrand(brand))
+        {
+            product.calculatePrices();
+        }
+
+
+
+
+
+        return brand;
     }
 }

@@ -3,6 +3,7 @@ package com.kz.sme_management.service.product.impl;
 import com.kz.sme_management.dto.product.ListProductDto;
 import com.kz.sme_management.exception.NotFoundException;
 import com.kz.sme_management.model.customer.Customer;
+import com.kz.sme_management.model.product.Brand;
 import com.kz.sme_management.model.product.Product;
 import com.kz.sme_management.model.util.Paging;
 import com.kz.sme_management.repository.product.ProductRepository;
@@ -51,5 +52,11 @@ public class ProductService implements IProductService
     public Product findById(String id)
     {
         return productRepository.findById(id).orElseThrow( () -> new NotFoundException("Invalid product id"));
+    }
+
+    @Override
+    public List<Product> findProductsByBrand(Brand brand)
+    {
+        return productRepository.findProductsByBrand(brand);
     }
 }
