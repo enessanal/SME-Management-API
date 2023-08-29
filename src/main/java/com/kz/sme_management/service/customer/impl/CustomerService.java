@@ -30,7 +30,10 @@ public class CustomerService implements ICustomerService
     public Page<ListCustomerDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
     {
         Paging paging = new Paging(new int[]{10, 25, 50, 100}, new String[]{"createdTime","updateTime","code","id","email", "identityNumber", "fullName", "mobilePhone"});
-        Pageable pageable = paging.getPageable(page, size, sortBy, direction);
+        Pageable pageable = paging.getPageable(page.get(), size.get(), sortBy.get(), direction.get());
+
+
+
 
         return customerRepository.findAll(pageable).map(ListCustomerDto::new);
     }

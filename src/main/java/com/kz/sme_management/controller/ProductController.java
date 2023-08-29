@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -24,13 +25,28 @@ public class ProductController
 {
     private final ProductService productService;
 
+
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get products")
-    public Page<ListProductDto> getProducts(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
+    public Page<ListProductDto> getProducts(@RequestParam(required = false) Map<String, String> parameters)
     {
-        return productService.findAll(page,size,sortBy,direction);
+        return productService.findAll(parameters);
     }
+
+
+
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    @Operation(summary = "Get products")
+//    public Page<ListProductDto> getProducts(Optional<Integer> page,
+//                                            Optional<Integer> size,
+//                                            Optional<String> sortBy,
+//                                            Optional<String> direction)
+//    {
+//        return productService.findAll(page,size,sortBy,direction);
+//    }
 
     @GetMapping("/id/{id}")
     @ResponseStatus(HttpStatus.OK)

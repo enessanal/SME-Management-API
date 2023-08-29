@@ -6,11 +6,12 @@ import com.kz.sme_management.model.product.Product;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface IProductService
 {
-    public Page<ListProductDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction);
+    public Page<ListProductDto> findAll(Map<String,String> parameters);
     Product findById(String id);
 
     List<Product> findProductsByBrand(Brand brand);
