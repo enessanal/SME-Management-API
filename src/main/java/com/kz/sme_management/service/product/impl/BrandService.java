@@ -55,6 +55,7 @@ public class BrandService implements IBrandService
         /*TODO
         * ASYNC
         *  */
+
         for(Product product :productService.findProductsByBrand(brand))
         {
             product.calculatePrices();

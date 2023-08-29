@@ -54,10 +54,6 @@ public class Brand extends BaseEntity
 
 
 
-
-
-
-
     @Getter @Setter
     @ToString.Exclude
     @JsonBackReference
