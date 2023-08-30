@@ -31,140 +31,87 @@ public class ProductService implements IProductService
     private final ProductRepository productRepository;
 
     @Override
-    public Page<ListProductDto> findAll(Map<String,String> parameters)
+    public Page<ListProductDto> findAll(Map<String, String> allParameters)
     {
 
-        String[] filteringWhiteList = new String[]{
-                "brand",
-                "category",
-                "type",
-                "size"
-        };
+        // START - Setting filter parameters
+        // -------------------------------------------------------------------------------------- //
 
-        String[] sortingWhiteList = new String[]{
-                "page",
-                "size",
-                "sortBy",
-                "direction"
-        };
+        Map<String, String> inFilterParameters = parseRequestParams(allParameters, List.of( "brand","category","type","size"));
+        Specification<Product> productSpecification = getProductSpec(inFilterParameters);
 
-        // START: CLEAR ALL UNACCEPTABLE PARAMETERS
-        // ********************************************************************************
+        // -------------------------------------------------------------------------------------- //
+        // END - Setting filter parameters
 
-        Map<String, String> filterParameters = new HashMap<>();
-        for (String key : filteringWhiteList)
+
+        // START - Setting Paging & Sorting parameters
+        // -------------------------------------------------------------------------------------- //
+
+        Map<String, String> sortPageParameters = parseRequestParams(allParameters, List.of("pageNumber", "pageSize", "sortBy", "direction"));
+
+        int size = getIntegerValueOrDefault(sortPageParameters.get("pageSize"), List.of(10, 25, 50, 100, 250, 500));
+
+        int page;
+        try
         {
-            if (parameters.containsKey(key))
+            page = Integer.parseInt(sortPageParameters.get("pageNumber"));
+            page = Math.max(page, 0);
+        }
+        catch (NumberFormatException e)
+        {
+            page = 0;
+        }
+
+        Sort.Direction sortDirection = sortPageParameters.containsKey("direction") ?  (sortPageParameters.get("direction").equalsIgnoreCase("desc") ? Sort.Direction.DESC: Sort.Direction.ASC) : Sort.Direction.ASC;
+
+        List<String> sortableFieldsList = new ArrayList<>();
+
+        Field[] fields = Product.class.getDeclaredFields();
+        for(Field field : fields)
+        {
+            if(field.getType().getName().startsWith("java"))
             {
-                filterParameters.put(key, parameters.get(key));
+                sortableFieldsList.add(field.getName());
+            }
+            else
+            {
+                sortableFieldsList.add(field.getName()+".name");
             }
         }
 
-        Map<String, String> sortingParameters = new HashMap<>();
-        for (String key : sortingWhiteList)
+        fields = Product.class.getSuperclass().getDeclaredFields();
+        for(Field field : fields)
         {
-            if (parameters.containsKey(key))
+            if(field.getType().getName().startsWith("java"))
             {
-                sortingParameters.put(key, parameters.get(key));
+                sortableFieldsList.add(field.getName());
+            }
+            else
+            {
+                sortableFieldsList.add(field.getName()+".name");
             }
         }
 
-        // ********************************************************************************
-        // END: CLEAR ALL UNACCEPTABLE PARAMETERS
+        String sortBy = sortPageParameters.getOrDefault("sortBy", "updatedTime");
+        if (!sortableFieldsList.contains(sortBy))
+        {
+            sortBy = "updatedTime";
+        }
 
+        // Eğer sortBy parametresi boş gelmişse, updatedTime alanına göre DESC olarak sıralıyouz.
+        if(!sortPageParameters.containsKey("sortBy"))
+        {
+            sortDirection = Sort.Direction.DESC;
+            sortBy = "updatedTime";
+        }
 
-
-
-        // START - Buradaki işlemler ayrı bir sınıfa alınacak ve düzenlenecek.
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-//
-//        int[] sizes = new int[]{10, 25, 50, 100, 250};
-//        int defaultSize = sizes[0];
-//
-//        int inputSize = defaultSize;
-//        try
-//        {
-//            inputSize = Integer.parseInt(sortingParameters.get("size"));
-//        }
-//        catch (NumberFormatException e)
-//        {
-//            inputSize = defaultSize;
-//        }
-//        final int inputSizeFinal = inputSize;
-//        int size = IntStream.of(sizes).anyMatch(number -> number == inputSizeFinal) ? inputSize : defaultSize;
-//
-//
-//
-//
-//        int page = 0;
-//        try
-//        {
-//            page = Integer.parseInt(sortingParameters.get("page"));
-//            page = Math.max(page, 0);
-//        }
-//        catch (NumberFormatException e)
-//        {
-//            page = 0;
-//        }
-//
-//
-//        List<String> fieldsList = new ArrayList<>();
-//        Field[] fields = Product.class.getDeclaredFields();
-//        for(Field field : fields)
-//        {
-//            fieldsList.add(field.getName());
-//        }
-//
-//
-//        String sortBy = sortingParameters.get("sortBy");
-//
-//        if (!fieldsList.contains(sortBy))
-//        {
-//            sortBy = "updatedTime";
-//        }
-//
-//        Sort.Direction sortDirection = sortingParameters.get("direction") == null ?  Sort.Direction.ASC :
-//                (sortingParameters.get("direction").equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC);
-//
-//        // Eğer sortBy field verilmediyse updatedTime'a göre sıralayacak. En son değişen ürünlerin gelmesini istiyoruz.
-//        if( ! sortingParameters.containsKey("sortBy"))
-//            sortDirection = Sort.Direction.DESC;
-
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
-        // END - Buradaki işlemler ayrı bir sınıfa alınacak ve düzenlenecek.
-
-
-        int page = Integer.parseInt(parameters.get("page"));
-        int size = Integer.parseInt(parameters.get("size"));
-        Sort.Direction sortDirection = parameters.get("direction").equalsIgnoreCase("desc") ? Sort.Direction.DESC: Sort.Direction.ASC;
-        String sortBy = parameters.get("sortBy");
-
-
-
-
+        System.out.println("======>>>> "+page + " - " + size + " - " + sortBy + " - "+ sortDirection);
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortBy));
-        pageable = PageRequest.of(1, 10, Sort.by(Sort.Direction.ASC, "ccPrice"));
-        Map<String, List<String>> filterMap = new HashMap<>();
 
-        for(Map.Entry<String,String> filter: filterParameters.entrySet())
-        {
-            filterMap.put(filter.getKey(), Arrays.asList(filter.getValue().split(",")));
-        }
+        // -------------------------------------------------------------------------------------- //
+        // END - Setting Paging & Sorting parameters
 
-        Specification<Product> spec = ProductSpecification.withDynamicFilter(filterMap);
-
-        return productRepository.findAll(spec, pageable).map(ListProductDto::new);
+        return productRepository.findAll(productSpecification, pageable).map(ListProductDto::new);
     }
 
     @Override
@@ -178,4 +125,40 @@ public class ProductService implements IProductService
     {
         return productRepository.findProductsByBrand(brand);
     }
+
+
+
+    // ----------
+    private Map<String, String> parseRequestParams(Map<String, String> allParameters, List<String> desiredParamNames)
+    {
+        return allParameters.entrySet()
+                .stream()
+                .filter(entry -> desiredParamNames.contains(entry.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    private Specification<Product> getProductSpec(Map<String, String> inFilterParameters )
+    {
+        Map<String, List<String>> filterMap = new HashMap<>();
+        for(Map.Entry<String,String> filter: inFilterParameters.entrySet())
+        {
+            filterMap.put(filter.getKey(), Arrays.asList(filter.getValue().split(",")));
+        }
+        return ProductSpecification.withDynamicFilter(filterMap);
+    }
+
+    private int getIntegerValueOrDefault(String inputString ,List<Integer> values)
+    {
+        if(inputString == null || inputString.isEmpty()) return values.get(0);
+        try
+        {
+            int value = Integer.parseInt(inputString);
+            return values.contains(value) ? value : values.get(0);
+        }
+        catch(NumberFormatException exception)
+        {
+            return values.get(0);
+        }
+    }
+
 }

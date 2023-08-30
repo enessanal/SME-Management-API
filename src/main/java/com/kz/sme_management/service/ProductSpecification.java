@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class ProductSpecification {
@@ -39,37 +38,3 @@ public class ProductSpecification {
         };
     }
 }
-
-
-/*
-@RequiredArgsConstructor
-public class ProductSpecification implements Specification<Product> {
-
-    private final SearchCriteria criteria;
-
-
-
-
-    @Override
-    public Predicate toPredicate
-            (Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-
-        if (criteria.getOperation().equalsIgnoreCase(">")) {
-            return builder.greaterThanOrEqualTo(
-                    root.<String> get(criteria.getKey()), criteria.getValue().toString());
-        }
-        else if (criteria.getOperation().equalsIgnoreCase("<")) {
-            return builder.lessThanOrEqualTo(
-                    root.<String> get(criteria.getKey()), criteria.getValue().toString());
-        }
-        else if (criteria.getOperation().equalsIgnoreCase(":")) {
-            if (root.get(criteria.getKey()).getJavaType() == String.class) {
-                return builder.in(
-                        root.<String>get(criteria.getKey())).value(criteria.getValue().toString());
-            } else {
-                return builder.equal(root.get(criteria.getKey()), criteria.getValue());
-            }
-        }
-        return null;
-    }
-}*/

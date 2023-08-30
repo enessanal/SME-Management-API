@@ -1,8 +1,6 @@
 package com.kz.sme_management.controller;
 
-import com.kz.sme_management.dto.customer.ListCustomerDto;
 import com.kz.sme_management.dto.product.ListProductDto;
-import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.model.product.Product;
 import com.kz.sme_management.service.product.impl.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,9 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 
 @RestController
@@ -26,27 +22,13 @@ public class ProductController
     private final ProductService productService;
 
 
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get products")
-    public Page<ListProductDto> getProducts(@RequestParam(required = false) Map<String, String> parameters)
+    public Page<ListProductDto> getProducts(@RequestParam(required = false) Map<String, String> allParameters)
     {
-        return productService.findAll(parameters);
+        return productService.findAll(allParameters);
     }
-
-
-
-//    @GetMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    @Operation(summary = "Get products")
-//    public Page<ListProductDto> getProducts(Optional<Integer> page,
-//                                            Optional<Integer> size,
-//                                            Optional<String> sortBy,
-//                                            Optional<String> direction)
-//    {
-//        return productService.findAll(page,size,sortBy,direction);
-//    }
 
     @GetMapping("/id/{id}")
     @ResponseStatus(HttpStatus.OK)
