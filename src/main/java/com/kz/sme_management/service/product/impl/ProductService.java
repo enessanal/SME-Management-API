@@ -2,10 +2,8 @@ package com.kz.sme_management.service.product.impl;
 
 import com.kz.sme_management.dto.product.ListProductDto;
 import com.kz.sme_management.exception.NotFoundException;
-import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.model.product.Brand;
 import com.kz.sme_management.model.product.Product;
-import com.kz.sme_management.model.util.Paging;
 import com.kz.sme_management.repository.product.ProductRepository;
 import com.kz.sme_management.service.ProductSpecification;
 import com.kz.sme_management.service.product.IProductService;
@@ -16,13 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
