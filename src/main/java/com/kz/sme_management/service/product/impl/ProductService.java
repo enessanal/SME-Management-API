@@ -32,7 +32,7 @@ public class ProductService implements IProductService
         // START - Setting filter parameters
         // -------------------------------------------------------------------------------------- //
 
-        Map<String, String> inFilterParameters = parseRequestParams(allParameters, List.of( "brand","category","type","size"));
+        Map<String, String> inFilterParameters = parseRequestParams(allParameters, List.of( "brand","category","type","size","name","code"));
         Specification<Product> productSpecification = getProductSpec(inFilterParameters);
 
         // -------------------------------------------------------------------------------------- //
