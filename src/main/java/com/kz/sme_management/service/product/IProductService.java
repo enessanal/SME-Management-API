@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface IProductService
 {
-    public Page<ListProductDto> findAll(Map<String,String> parameters);
+    public Page<ListProductDto> findAll(Map<String, String> allParameters);
     Product findById(String id);
 
     List<Product> findProductsByBrand(Brand brand);
