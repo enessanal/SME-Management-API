@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
@@ -28,15 +29,9 @@ public class CustomerController
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get customers")
-    public Page<ListCustomerDto> getCustomers(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
+    public Page<ListCustomerDto> getCustomers(@RequestParam(required = false) Map<String, String> allParameters)
     {
-
-        return customerService.findAll(page,size,sortBy,direction);
-
-
-
-//        return customerService.findAll().stream().map(ListCustomerDto::new).collect(toList());
-
+        return customerService.findAll(allParameters);
     }
 
     @GetMapping("/count")
