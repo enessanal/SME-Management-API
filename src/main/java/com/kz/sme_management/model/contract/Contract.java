@@ -2,7 +2,7 @@ package com.kz.sme_management.model.contract;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kz.sme_management.model.Employee;
-import com.kz.sme_management.model.PaymentMethod;
+import com.kz.sme_management.model.sale.PaymentMethod;
 import com.kz.sme_management.model.customer.Address;
 import com.kz.sme_management.model.customer.Customer;
 import jakarta.persistence.*;

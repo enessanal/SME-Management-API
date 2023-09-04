@@ -1,6 +1,6 @@
 package com.kz.sme_management.service.contract;
 
-import com.kz.sme_management.model.PaymentMethod;
+import com.kz.sme_management.model.sale.PaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

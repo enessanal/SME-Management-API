@@ -1,4 +1,4 @@
-package com.kz.sme_management.model;
+package com.kz.sme_management.model.sale;
 
 import lombok.Getter;
 

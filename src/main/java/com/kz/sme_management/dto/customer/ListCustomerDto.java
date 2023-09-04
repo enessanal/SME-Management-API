@@ -44,7 +44,31 @@ public class ListCustomerDto
                     break;
                 }
             }
-
         }
+
+        Field[] superFields = customerClass.getSuperclass().getDeclaredFields();
+
+        for (Field customerField : superFields)
+        {
+            for(Field customerListField : customerListFields)
+            {
+                if(customerField.getName().equals(customerListField.getName()))
+                {
+                    try
+                    {
+                        customerField.setAccessible(true);
+                        customerListField.setAccessible(true);
+                        Object value = customerField.get(customer);
+                        customerListField.set(this, value);
+                    }
+                    catch (IllegalAccessException e)
+                    {
+                        System.out.println(e);
+                    }
+                    break;
+                }
+            }
+        }
+
     }
 }

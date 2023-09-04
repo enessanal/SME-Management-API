@@ -1,6 +1,7 @@
 package com.kz.sme_management.model.customer;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,14 +13,10 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
+@ToString(callSuper = true)
 @Table(name = "customers")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    @Getter
-    private String id;
-
+public class Customer extends BaseEntity
+{
     @Getter
     @Setter
     @NonNull
@@ -59,16 +56,6 @@ public class Customer {
     @Setter
     @Column(name = "details")
     private String details;
-
-    @Getter
-    @Column(name = "created_time", updatable = false)
-    @CreationTimestamp
-    private Date createdTime;
-
-    @Getter
-    @UpdateTimestamp
-    @Column(name = "updated_time")
-    private Date updatedTime;
 
     @Getter
     @Setter

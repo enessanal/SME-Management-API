@@ -1,6 +1,7 @@
 package com.kz.sme_management.model.customer;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.kz.sme_management.model.util.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,14 +12,10 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
+@ToString(callSuper = true)
 @Table(name="addresses")
-public class Address
+public class Address extends BaseEntity
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="id", updatable = false, nullable = false)
-    @Getter
-    private String id;
 
     @Getter @Setter @NonNull
     @Column(name="name", nullable = false)
@@ -35,16 +32,6 @@ public class Address
     @Getter @Setter @NonNull
     @Column(name="details")
     private String details;
-
-    @Getter
-    @Column(name="created_time", updatable = false)
-    @CreationTimestamp
-    private Date createdTime;
-
-    @Getter
-    @UpdateTimestamp
-    @Column(name="updated_time")
-    private Date updatedTime;
 
     @Getter @Setter
     @ManyToOne
