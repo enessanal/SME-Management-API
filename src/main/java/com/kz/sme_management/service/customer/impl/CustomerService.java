@@ -1,6 +1,6 @@
 package com.kz.sme_management.service.customer.impl;
 
-import com.kz.sme_management.model.util.Paging;
+
 import com.kz.sme_management.dto.customer.AddAddressDto;
 import com.kz.sme_management.dto.customer.ListCustomerDto;
 import com.kz.sme_management.exception.ConflictException;
@@ -12,12 +12,15 @@ import com.kz.sme_management.repository.customer.CustomerRepository;
 import com.kz.sme_management.service.customer.ICustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,13 +30,72 @@ public class CustomerService implements ICustomerService
     private final AddressService addressService;
 
     @Override
-    public Page<ListCustomerDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction)
+    public Page<ListCustomerDto> findAll(Map<String, String> allParameters)
     {
-        Paging paging = new Paging(new int[]{10, 25, 50, 100}, new String[]{"createdTime","updateTime","code","id","email", "identityNumber", "fullName", "mobilePhone"});
-        Pageable pageable = paging.getPageable(page.get(), size.get(), sortBy.get(), direction.get());
+        // START - Setting Paging & Sorting parameters
+        // -------------------------------------------------------------------------------------- //
+        Map<String, String> sortPageParameters = parseRequestParams(allParameters, List.of("pageNumber", "pageSize", "sortBy", "direction"));
 
+        int size = getIntegerValueOrDefault(sortPageParameters.get("pageSize"), List.of(10, 25, 50, 100, 250));
 
+        int page;
+        try
+        {
+            page = Integer.parseInt(sortPageParameters.get("pageNumber"));
+            page = Math.max(page, 0);
+        }
+        catch (NumberFormatException e)
+        {
+            page = 0;
+        }
 
+        Sort.Direction sortDirection = sortPageParameters.containsKey("direction") ?  (sortPageParameters.get("direction").equalsIgnoreCase("desc") ? Sort.Direction.DESC: Sort.Direction.ASC) : Sort.Direction.ASC;
+
+        List<String> sortableFieldsList = new ArrayList<>();
+
+        Field[] fields = Customer.class.getDeclaredFields();
+        for(Field field : fields)
+        {
+            if(field.getType().getName().startsWith("java"))
+            {
+                sortableFieldsList.add(field.getName());
+            }
+            else
+            {
+                sortableFieldsList.add(field.getName()+".name");
+            }
+        }
+
+        fields = Customer.class.getSuperclass().getDeclaredFields();
+        for(Field field : fields)
+        {
+            if(field.getType().getName().startsWith("java"))
+            {
+                sortableFieldsList.add(field.getName());
+            }
+            else
+            {
+                sortableFieldsList.add(field.getName()+".name");
+            }
+        }
+
+        String sortBy = sortPageParameters.getOrDefault("sortBy", "updatedTime");
+        if (!sortableFieldsList.contains(sortBy))
+        {
+            sortBy = "updatedTime";
+        }
+
+        // Eğer sortBy parametresi boş gelmişse, updatedTime alanına göre DESC olarak sıralıyouz.
+        if(!sortPageParameters.containsKey("sortBy"))
+        {
+            sortDirection = Sort.Direction.DESC;
+            sortBy = "updatedTime";
+        }
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortBy));
+
+        // -------------------------------------------------------------------------------------- //
+        // END - Setting Paging & Sorting parameters
 
         return customerRepository.findAll(pageable).map(ListCustomerDto::new);
     }
@@ -130,5 +192,27 @@ public class CustomerService implements ICustomerService
 
 
 
+    // ----------
+    private Map<String, String> parseRequestParams(Map<String, String> allParameters, List<String> desiredParamNames)
+    {
+        return allParameters.entrySet()
+                .stream()
+                .filter(entry -> desiredParamNames.contains(entry.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
 
+
+    private int getIntegerValueOrDefault(String inputString ,List<Integer> values)
+    {
+        if(inputString == null || inputString.isEmpty()) return values.get(0);
+        try
+        {
+            int value = Integer.parseInt(inputString);
+            return values.contains(value) ? value : values.get(0);
+        }
+        catch(NumberFormatException exception)
+        {
+            return values.get(0);
+        }
+    }
 }

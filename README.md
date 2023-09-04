@@ -71,5 +71,31 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 - [ ] Product changes log management
 - [ ] Multi Language for error messages.
 
-	
+
+
+
+---
+
+```
+Things to consider when importing products from Excel.
+ - Filters to apply when retrieving string values:
+ 	-> TRIM(), removing all unnecessary spaces.
+ 	-> NewLine characters must be removed (SUBSTITUTE(SUBSTITUTE(TRIM([@name]); CHAR(10); "");CHAR(13); ""))
+ 	-> Product code cannot contain space character.
+ 	-> Product code will not contain Turkish characters.
+ 	-> Size field standardization.
+ 	-> Prevent chars like ",.' etc." for all string fields especially code, category etc.
+```
+
+
+
+
+
+
+
+
+
+
+
+ 
 	

@@ -6,11 +6,12 @@ import com.kz.sme_management.model.customer.Customer;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface ICustomerService
 {
-    Page<ListCustomerDto> findAll(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy, Optional<String> direction);
+    Page<ListCustomerDto> findAll(Map<String, String> allParameters);
     Long count();
     Customer findById(String id);
     Customer findByCode(String code);
