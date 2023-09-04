@@ -98,8 +98,6 @@ public class CustomerService implements ICustomerService
         // END - Setting Paging & Sorting parameters
 
         return customerRepository.findAll(pageable).map(ListCustomerDto::new);
-//        return customerRepository.findAll(PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "updatedTime"))).map(ListCustomerDto::new);
-
     }
 
     @Override
