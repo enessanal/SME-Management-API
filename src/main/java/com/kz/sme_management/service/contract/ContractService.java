@@ -73,7 +73,7 @@ public class ContractService {
         contract.setCustomer(customerService.findById(contractDTO.getCustomerId()));
         contract.setEmployee(employeeRepository.findById(contractDTO.getEmployeeId()).orElseThrow(() -> new NotFoundException("Invalid Employee id")));
         contract.setPaymentMethod(contractDTO.getPaymentMethod());
-        contract.setAddress(addressService.findById(contractDTO.getAddressId()));
+        contract.setAddress(addressService.findById(contractDTO.getAddressId()).toString());
         List<CartItem> cartItems = contractDTO.getCart().stream().map(cartItemDTO -> {
 
             Product product = productService.findById(cartItemDTO.getProductId());
