@@ -12,7 +12,6 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
-@ToString(callSuper = true)
 @Table(name="addresses")
 public class Address extends BaseEntity
 {

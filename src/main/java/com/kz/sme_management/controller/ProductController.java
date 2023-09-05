@@ -21,7 +21,6 @@ public class ProductController
 {
     private final ProductService productService;
 
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get products")
@@ -38,9 +37,20 @@ public class ProductController
         return productService.findById(id);
     }
 
+    @GetMapping("/count")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get number of all products")
+    public Long countProducts()
+    {
+        return productService.count();
+    }
 
 
-
-
-
+    @DeleteMapping("/id/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete a Product by id")
+    public void deleteProductById(@PathVariable String id)
+    {
+        productService.deleteById(id);
+    }
 }

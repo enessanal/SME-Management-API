@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -24,6 +25,12 @@ import java.util.stream.Collectors;
 public class ProductService implements IProductService
 {
     private final ProductRepository productRepository;
+
+    @Override
+    public Long count()
+    {
+        return productRepository.count();
+    }
 
     @Override
     public Page<ListProductDto> findAll(Map<String, String> allParameters)
@@ -120,6 +127,16 @@ public class ProductService implements IProductService
     {
         return productRepository.findProductsByBrand(brand);
     }
+
+
+    @Transactional
+    @Override
+    public void deleteById(String id)
+    {
+        if(productRepository.findById(id).isEmpty()) throw new NotFoundException("Invalid product id");
+        productRepository.deleteById(id);
+    }
+
 
 
 

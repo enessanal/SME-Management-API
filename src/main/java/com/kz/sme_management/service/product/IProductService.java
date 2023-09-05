@@ -10,8 +10,11 @@ import java.util.Map;
 
 public interface IProductService
 {
+    Long count();
     Page<ListProductDto> findAll(Map<String, String> allParameters);
     Product findById(String id);
+
+    void deleteById(String id);
 
     List<Product> findProductsByBrand(Brand brand);
 }
