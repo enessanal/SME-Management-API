@@ -1,0 +1,59 @@
+{
+	"info": {
+		"name": "Contract Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		
+	},
+	"item": [
+		{
+			"name": "Post Contract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customerId\": \"f0f9c497-66d3-4f71-b73e-737852742179\",\r\n  \"addressId\":\"53cdaee9-49d0-49ad-93b1-08efaa5d7ae8\",\r\n  \"cart\": [{\"productId\":\"97e3747f-c0fe-4d9f-abca-96b53be48944\",\r\n    \"count\": 1, \"price\": 123, \"deliveryDate\": \"2023-12-12\"\r\n  }],\r\n  \"paymentMethod\": \"CASH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CONTRACTS_PATH}}/",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CONTRACTS_PATH}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contracts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CONTRACTS_PATH}}",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CONTRACTS_PATH}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

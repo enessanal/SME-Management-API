@@ -1,0 +1,55 @@
+{
+	"info": {
+		"name": "Employee Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+	},
+	"item": [
+		{
+			"name": "Get Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{EMPLOYEES_PATH}}",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{EMPLOYEES_PATH}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{EMPLOYEES_PATH}}/:id",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{EMPLOYEES_PATH}}",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

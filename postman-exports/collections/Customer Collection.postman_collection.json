@@ -31,7 +31,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}?page=1&size=10&sortBy=&direction=",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}?sortBy=&direction=",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -43,12 +43,14 @@
 					],
 					"query": [
 						{
-							"key": "page",
-							"value": "1"
+							"key": "pageNumber",
+							"value": "0",
+							"disabled": true
 						},
 						{
-							"key": "size",
-							"value": "10"
+							"key": "pageSize",
+							"value": "250",
+							"disabled": true
 						},
 						{
 							"key": "sortBy",
@@ -104,7 +106,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "bbfe0eee-5a33-4285-b9ac-33d3c305d008"
+							"value": "78c93ca9-4e5f-4dde-85da-aeac93139d23"
 						}
 					]
 				}
@@ -139,7 +141,7 @@
 					"variable": [
 						{
 							"key": "code",
-							"value": "43845"
+							"value": "34408"
 						}
 					]
 				}
@@ -167,7 +169,94 @@
 					"variable": [
 						{
 							"key": "tc",
-							"value": ""
+							"value": "307081357"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Addresses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"İş12-3\",\r\n    \"city\":\"İstanbul\",\r\n    \"district\":\"Kadıköy\",\r\n    \"details\":\"Nida Kule 19. kat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMERS_PATH}}",
+						"id",
+						":id",
+						"addresses"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "c4acbcd1-d711-4799-b8fe-5fe333c4e2d8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Address by Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"İş12-3\",\r\n    \"city\":\"İstanbul\",\r\n    \"district\":\"Kadıköy\",\r\n    \"details\":\"Nida Kule 19. kat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses/:addressId",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMERS_PATH}}",
+						"id",
+						":id",
+						"addresses",
+						":addressId"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "78c93ca9-4e5f-4dde-85da-aeac93139d23"
+						},
+						{
+							"key": "addressId",
+							"value": "dcfc381f-a6bc-498b-b08c-e59d7f23941a"
 						}
 					]
 				}
@@ -259,53 +348,9 @@
 			"response": []
 		},
 		{
-			"name": "Get Customer Addresses",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Delete Customer Address by Id",
 			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"İş12-3\",\r\n    \"city\":\"İstanbul\",\r\n    \"district\":\"Kadıköy\",\r\n    \"details\":\"Nida Kule 19. kat\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses",
-					"protocol": "{{SCHEME}}",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"{{API_BASE}}",
-						"{{CUSTOMERS_PATH}}",
-						"id",
-						":id",
-						"addresses"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "6e07f4da-c479-4abc-96c0-67fb89aa8700"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Customer Address by Id",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -334,11 +379,40 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "cdd0423f-1e05-4384-9adf-00e1e8c5ee46"
+							"value": "78c93ca9-4e5f-4dde-85da-aeac93139d23"
 						},
 						{
 							"key": "addressId",
-							"value": "6e07f4da-c479-4abc-96c0-67fb89aa8700"
+							"value": "dcfc381f-a6bc-498b-b08c-e59d7f23941a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer's Adresses",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{CUSTOMERS_PATH}}",
+						"id",
+						":id",
+						"addresses"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1228143f-c60a-4085-aae1-a1d907e67901"
 						}
 					]
 				}
@@ -376,36 +450,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "ff2d0c79-7ec0-49d4-9bbd-99ee582f39b1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Customer's Adresses",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{CUSTOMERS_PATH}}/id/:id/addresses",
-					"protocol": "{{SCHEME}}",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"{{API_BASE}}",
-						"{{CUSTOMERS_PATH}}",
-						"id",
-						":id",
-						"addresses"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "ff2d0c79-7ec0-49d4-9bbd-99ee582f39b1"
+							"value": "f71f6680-7781-45a7-85a0-3d32da75ef91"
 						}
 					]
 				}

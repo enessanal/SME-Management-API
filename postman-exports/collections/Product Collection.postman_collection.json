@@ -1,16 +1,37 @@
 {
 	"info": {
 		"name": "Product Collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",		
 	},
 	"item": [
+		{
+			"name": "Count Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{PRODUCTS_PATH}}/count",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{PRODUCTS_PATH}}",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Get Products",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{PRODUCTS_PATH}}?page&size&sortBy=listPrice&direction=desc",
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{PRODUCTS_PATH}}",
 					"protocol": "{{SCHEME}}",
 					"host": [
 						"{{HOST}}"
@@ -22,20 +43,44 @@
 					],
 					"query": [
 						{
-							"key": "page",
-							"value": null
+							"key": "pageNumber",
+							"value": "0",
+							"disabled": true
 						},
 						{
-							"key": "size",
-							"value": null
+							"key": "pageSize",
+							"value": "10",
+							"disabled": true
 						},
 						{
 							"key": "sortBy",
-							"value": "listPrice"
+							"value": "brand.name",
+							"disabled": true
 						},
 						{
 							"key": "direction",
-							"value": "desc"
+							"value": "asc",
+							"disabled": true
+						},
+						{
+							"key": "brand",
+							"value": "bellona,ahmur,ertaş",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "ba,pe,hena",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "1",
+							"disabled": true
 						}
 					]
 				}
@@ -85,6 +130,104 @@
 							"key": "id",
 							"value": "48ff40e6-6874-44d7-9d99-dc81b256e110"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get User By Invalid Id Expects 404, NOT FOUND\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.have.jsonBody(\"message\");\r",
+							"    pm.response.to.have.jsonBody(\"status\");\r",
+							"    pm.response.to.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{PRODUCTS_PATH}}/id/:id",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{PRODUCTS_PATH}}",
+						"id",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "41ff41ca-6af9-4fc2-8f1a-7e157af4564b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Brands",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{BRANDS_PATH}}",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{BRANDS_PATH}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Brand By Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"GECICI AD\",\r\n    \"listDiscountRate\": 0 ,\r\n    \"profitRate\": 0,\r\n    \"profitMinRate\": 0,\r\n    \"profitMaxRate\": 0 ,\r\n    \"ccRate\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SCHEME}}://{{HOST}}:{{PORT}}/{{API_BASE}}/{{BRANDS_PATH}}/8363db4f-f411-43a4-bbdc-62e352ef76cd",
+					"protocol": "{{SCHEME}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{API_BASE}}",
+						"{{BRANDS_PATH}}",
+						"8363db4f-f411-43a4-bbdc-62e352ef76cd"
 					]
 				}
 			},
