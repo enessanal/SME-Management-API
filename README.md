@@ -24,12 +24,12 @@ A practical api designed for SMEs, focusing on their unique operational needs. R
 | Modules				| Description 																	|
 |-----------------------|-------------------------------------------------------------------------------|
 | Customer Management	| CRUD operations, Bulk operations. 3rd party software's integrations.			|
-| User Management		| CRUD operations, Bulk operations.												|
-| User Role Management	| Authorization and privileges. (Accounting, Sale, Manager, Admin etc.)			|
+| Employee Management		| CRUD operations, Bulk operations.												|
+| Employee Role Management	| Authorization and privileges. (Accounting, Sale, Manager, Admin etc.)			|
 | Product Management	| CRUD Operations, Bulk operations. Detailed logging. Permission management.	|
 | Price Customization	| Dynamic pricing. Brand-specific, category-specific factors.					|
 | Sale Operations		| Cart to sale, sale to invoice, sale management etc.							|
-| Invoice Management	| Statistics, reports, charts etc.												|
+| Contract Management	| Statistics, reports, charts etc.												|
 | Delivery Management	| Reminders, notifications.														|
 
 ## Progress Tracking
