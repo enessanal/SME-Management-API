@@ -49,9 +49,6 @@ public class BrandService implements IBrandService
 
         brand = brandRepository.save(brand);
 
-
-
-
         /*TODO
         * ASYNC
         *  */
@@ -60,10 +57,6 @@ public class BrandService implements IBrandService
         {
             product.calculatePrices();
         }
-
-
-
-
 
         return brand;
     }

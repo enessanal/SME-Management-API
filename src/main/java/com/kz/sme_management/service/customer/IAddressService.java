@@ -7,6 +7,7 @@ public interface IAddressService {
     Address create(Address address, Customer customer);
 
     void deleteByCustomer(Customer customer);
+    void deleteById(String id);
 
     Address findById(String id);
 }

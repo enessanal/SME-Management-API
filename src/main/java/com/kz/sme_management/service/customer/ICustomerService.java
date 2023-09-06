@@ -25,4 +25,6 @@ public interface ICustomerService
     List<Address> getAddresses(String id);
 
     void deleteAddresses(String id);
+    void deleteAddress(String id, String addressId);
+
 }

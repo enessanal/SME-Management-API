@@ -25,7 +25,16 @@ public class AddressService implements IAddressService {
     }
 
     @Override
+    public void deleteById(String id)
+    {
+        if(addressRepository.findById(id).isEmpty()) throw new NotFoundException("Invalid address identity number");
+        addressRepository.deleteById(id);
+    }
+
+    @Override
     public Address findById(String id) {
         return addressRepository.findById(id).orElseThrow(() -> new NotFoundException("Invalid address id"));
     }
+
+
 }
