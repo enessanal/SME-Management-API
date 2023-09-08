@@ -17,4 +17,5 @@ public interface IProductService
     void deleteById(String id);
 
     List<Product> findProductsByBrand(Brand brand);
+    List<ListProductDto> findByIdIn(List<String> ids);
 }

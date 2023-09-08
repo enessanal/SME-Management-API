@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -35,6 +36,14 @@ public class ProductController
     public Product getProductById(@PathVariable String id)
     {
         return productService.findById(id);
+    }
+
+    @GetMapping("/ids")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get Products by ids")
+    public List<ListProductDto> getProductsByIds(@RequestParam(required = true) List<String> ids)
+    {
+        return productService.findByIdIn(ids);
     }
 
     @GetMapping("/count")

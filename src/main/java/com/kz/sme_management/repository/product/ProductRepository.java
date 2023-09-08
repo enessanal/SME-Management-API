@@ -22,7 +22,6 @@ public interface ProductRepository extends JpaRepository<Product, String>, JpaSp
 
     List<Product> findProductsByBrand(Brand brand);
 
-
-//    Page<Product> findAll(Specification<Product> spec, Pageable pageable);
+    List<Product> findByIdIn(List<String> ids);
 
 }

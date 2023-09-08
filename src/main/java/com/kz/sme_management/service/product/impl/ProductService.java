@@ -128,6 +128,12 @@ public class ProductService implements IProductService
         return productRepository.findProductsByBrand(brand);
     }
 
+    @Override
+    public List<ListProductDto> findByIdIn(List<String> ids)
+    {
+        return productRepository.findByIdIn(ids).stream().map(ListProductDto::new).collect(Collectors.toList());
+    }
+
 
     @Transactional
     @Override
