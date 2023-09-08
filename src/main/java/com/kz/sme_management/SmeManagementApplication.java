@@ -2,7 +2,7 @@ package com.kz.sme_management;
 
 import com.github.javafaker.Faker;
 import com.kz.sme_management.dto.customer.AddAddressDto;
-import com.kz.sme_management.model.Employee;
+import com.kz.sme_management.model.employee.Employee;
 import com.kz.sme_management.model.sale.PaymentMethod;
 import com.kz.sme_management.model.customer.Customer;
 import com.kz.sme_management.model.product.*;

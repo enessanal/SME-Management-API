@@ -1,4 +1,4 @@
-package com.kz.sme_management.model;
+package com.kz.sme_management.model.employee;
 
 import com.kz.sme_management.controller.BasicEntity;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.kz.sme_management.controller;
+package com.kz.sme_management.controller.customer;
 
 import com.kz.sme_management.dto.customer.AddAddressDto;
 import com.kz.sme_management.dto.customer.ListCustomerDto;
